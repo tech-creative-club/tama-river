@@ -29,7 +29,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .vercel/output/static --project-name=tama-river
+          command: pages deploy .vercel/output/static --project-name=tama-river --branch=stg
       - name: Add publish URL as commit status
         uses: actions/github-script@v6
         with:
@@ -44,28 +44,70 @@ jobs:
               sha,
               target_url: "${{ steps.deploy.outputs.deployment-url }}",
             });
+
+      - name: Add publish URL as stg
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const sha = context.payload.pull_request?.head.sha ?? context.sha;
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              context: 'Cloudflare Pages',
+              description: 'Cloudflare Pages deployment',
+              state: 'success',
+              sha,
+              target_url: "https://stg.tama-river.pages.dev/",
+            });
+
       - uses: chrnorm/deployment-action@v2
         name: Create GitHub deployment
-        id: deployment
+        id: deployment-preview
         with:
           token: '${{ github.token }}'
           environment-url: "${{ steps.deploy.outputs.deployment-url }}"
           environment: preview
 
-      - name: Update deployment status (success)
+      - uses: chrnorm/deployment-action@v2
+        name: Create GitHub deployment
+        id: deployment-stg
+        with:
+          token: '${{ github.token }}'
+          environment-url: "https://stg.tama-river.pages.dev/"
+          environment: stg
+
+      - name: Update deployment preview status (success)
         if: success()
         uses: chrnorm/deployment-status@v2
         with:
           token: '${{ github.token }}'
           environment-url: "${{ steps.deploy.outputs.deployment-url }}"
           state: 'success'
-          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          deployment-id: ${{ steps.deployment-preview.outputs.deployment_id }}
 
-      - name: Update deployment status (failure)
+      - name: Update deployment stg status (success)
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: '${{ github.token }}'
+          environment-url: "https://stg.tama-river.pages.dev/"
+          state: 'success'
+          deployment-id: ${{ steps.deployment-stg.outputs.deployment_id }}
+
+      - name: Update deployment preview status (failure)
         if: failure()
         uses: chrnorm/deployment-status@v2
         with:
           token: '${{ github.token }}'
           environment-url: "${{ steps.deploy.outputs.deployment-url }}"
           state: 'failure'
-          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          deployment-id: ${{ steps.deployment-preview.outputs.deployment_id }}
+
+      - name: Update deployment stg status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: '${{ github.token }}'
+          environment-url: "https://stg.tama-river.pages.dev/"
+          state: 'failure'
+          deployment-id: ${{ steps.deployment-stg.outputs.deployment_id }}

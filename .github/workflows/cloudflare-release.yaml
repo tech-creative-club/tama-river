@@ -29,7 +29,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .vercel/output/static --project-name=tama-river
+          command: pages deploy .vercel/output/static --project-name=tama-river --branch=main
       - name: Add publish URL as commit status
         uses: actions/github-script@v6
         with:
@@ -42,14 +42,14 @@ jobs:
               description: 'Cloudflare Pages deployment',
               state: 'success',
               sha,
-              target_url: "${{ steps.deploy.outputs.deployment-url }}",
+              target_url: "https://tama-river.pages.dev/",
             });
       - uses: chrnorm/deployment-action@v2
         name: Create GitHub deployment
         id: deployment
         with:
           token: '${{ github.token }}'
-          environment-url: "${{ steps.deploy.outputs.deployment-url }}"
+          environment-url: "https://tama-river.pages.dev/"
           environment: production
 
       - name: Update deployment status (success)
@@ -57,7 +57,7 @@ jobs:
         uses: chrnorm/deployment-status@v2
         with:
           token: '${{ github.token }}'
-          environment-url: "${{ steps.deploy.outputs.deployment-url }}"
+          environment-url: "https://tama-river.pages.dev/"
           state: 'success'
           deployment-id: ${{ steps.deployment.outputs.deployment_id }}
 
@@ -66,6 +66,6 @@ jobs:
         uses: chrnorm/deployment-status@v2
         with:
           token: '${{ github.token }}'
-          environment-url: "${{ steps.deploy.outputs.deployment-url }}"
+          environment-url: "https://tama-river.pages.dev/"
           state: 'failure'
           deployment-id: ${{ steps.deployment.outputs.deployment_id }}

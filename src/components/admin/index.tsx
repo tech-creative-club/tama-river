@@ -1,6 +1,7 @@
-export default function AdminPage({email} : {email : string}) {
+export default function AdminPage() {
   return (
     <div>
+      <p>管理者ページです</p>
     </div>
   );
 }

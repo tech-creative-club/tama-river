@@ -1,23 +1,17 @@
 "use client";
 import { useSession } from "next-auth/react";
-import Login from "@/components/Login";
-import Logout from "@/components/Logout";
+import AdminPage from "@/components/admin";
 
 export default function Home() {
   const { data: session, status } = useSession();
   return (
-    <div>
+    <main className="flex flex-col items-center justify-center min-h-screen py-2">
       {status === "authenticated" ? (
-        <div>
-          <p>セッションの期限：{session.expires}</p>
-          <p>ようこそ、{session.user?.email}さん</p>
-          <div>
-            <Logout />
-          </div>
-        </div>
-      ) : (
-        <Login />
+        <AdminPage />
+      ): (
+        // TODO: UserPageを作成して貼り付ける
+        <p>ログインしてください</p>
       )}
-    </div>
+    </main>
   );
 }

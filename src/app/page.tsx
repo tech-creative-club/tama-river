@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import AdminPage from "@/components/admin";
 import CircularProgress from "@mui/material/CircularProgress";
 
-function RenderComponent({status} : {status: string}){
+function RenderComponent({ status }: { status: string }) {
   switch (status) {
     case "loading":
       return <CircularProgress />;
@@ -18,7 +18,7 @@ function RenderComponent({status} : {status: string}){
 
 export default function Home() {
   const { data: session, status } = useSession();
-  
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen py-2">
       <RenderComponent status={status} />

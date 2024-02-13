@@ -1,10 +1,9 @@
-'use client';
+"use client";
 
 import { Box } from "@mui/material";
 import FullDivider from "../misc/FullDivider";
 
 export default function Footer() {
-
   return (
     <footer>
       <FullDivider />

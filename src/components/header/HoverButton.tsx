@@ -6,7 +6,7 @@ export default function HoverButton( {text, href, Icon} : {text: string, href: s
   const router = useRouter();
   return (
     <Button sx={{ "&:hover" : { backgroundColor: "#CCC" }}} onClick={() => router.push(href)}>
-      {Icon && <><Icon className="text-2xl text-white" /><Box className="ml-2"/></>}
+      {Icon && <><Icon className="text-2xl text-gray-700" /><Box className="ml-2"/></>}
       <Typography sx={{ textTransform: 'capitalize', color: "#000", fontSize: "1.25rem"}}>
         {text}
       </Typography>

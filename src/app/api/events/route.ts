@@ -1,6 +1,6 @@
 // URL一覧とSummaryCardを定義
-export const runtime = 'edge';
-import { SummaryCardProp } from '@/components/SummaryCard';
+export const runtime = "edge";
+import { SummaryCardProp } from "@/components/SummaryCard";
 //import { nanoid } from 'nanoid';
 // import { fakeDataJson } from './const';
 
@@ -55,7 +55,9 @@ interface Items {
 
 async function getArchiveByFQDN(fqdn: string): Promise<SummaryCardProp[]> {
   const value = (await (
-    await fetch('https://tama-river-workers.suguru-toyohara.workers.dev/api/items')
+    await fetch(
+      "https://tama-river-workers.suguru-toyohara.workers.dev/api/items",
+    )
   ).json()) as Items[];
   const item = value.find((e) => e.FQDN === fqdn);
   return item?.data || [];
@@ -63,7 +65,9 @@ async function getArchiveByFQDN(fqdn: string): Promise<SummaryCardProp[]> {
 
 async function Handler() {
   // const content: SummaryCard[] = randomItems();
-  const content: SummaryCardProp[] = await getArchiveByFQDN('www.city.chofu.lg.jp');
+  const content: SummaryCardProp[] = await getArchiveByFQDN(
+    "www.city.chofu.lg.jp",
+  );
   return Response.json(content);
 }
 

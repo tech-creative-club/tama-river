@@ -13,7 +13,11 @@ function HeaderSection({ children }: { children: React.ReactNode }) {
 }
 
 function AdminTabs() {
-  return <Tab title="Overview" href="/" Icon={DescriptionIcon} />;
+  return (
+    <>
+      <Tab title="Overview" href="/" Icon={DescriptionIcon} />
+    </>
+  );
 }
 
 function LoginButton() {

@@ -1,18 +1,21 @@
-'use client';
+"use client";
 
-import { Box, Card } from '@mui/material';
-import ErrorIcon from '@mui/icons-material/Error';
-import WarningIcon from '@mui/icons-material/Warning';
-import HelpCenterIcon from '@mui/icons-material/HelpCenter';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { Box, Card } from "@mui/material";
+import ErrorIcon from "@mui/icons-material/Error";
+import WarningIcon from "@mui/icons-material/Warning";
+import HelpCenterIcon from "@mui/icons-material/HelpCenter";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 export interface NotificationProps {
   title: string;
   text: string;
   notificationType: NotificationType;
 }
 
-type NotificationType = 'info' | 'warning' | 'error' | 'success';
-type NotificationIconComponentsType = Record<NotificationType, React.ElementType>;
+type NotificationType = "info" | "warning" | "error" | "success";
+type NotificationIconComponentsType = Record<
+  NotificationType,
+  React.ElementType
+>;
 
 const NotificationIconComponents: NotificationIconComponentsType = {
   info: HelpCenterIcon,

@@ -1,7 +1,7 @@
-import { Button } from '@/components/base/Button';
-import { Label } from '@/components/Label';
+import { Button } from "@/components/base/Button";
+import { Label } from "@/components/Label";
 
-type TagButtonVariant = 'normal' | 'wrapped';
+type TagButtonVariant = "normal" | "wrapped";
 
 interface TagButtonProps {
   tags: string[];
@@ -11,8 +11,8 @@ interface TagButtonProps {
 }
 
 const variantType = {
-  normal: 'normal',
-  wrapped: 'wrapped',
+  normal: "normal",
+  wrapped: "wrapped",
 };
 
 function NomalTagButton(props: TagButtonProps) {
@@ -21,7 +21,11 @@ function NomalTagButton(props: TagButtonProps) {
     <div className="flex flex-row space-x-3">
       {tags.map((tag, index) => {
         return (
-          <Button key={index} onClick={() => onClick(tag)} active={selectedTag === tag}>
+          <Button
+            key={index}
+            onClick={() => onClick(tag)}
+            active={selectedTag === tag}
+          >
             <Label variant="small">{tag}</Label>
           </Button>
         );
@@ -37,7 +41,11 @@ const WappedTagButton = (props: TagButtonProps) => {
       <div className="flex flex-row space-x-3">
         {tags.map((tag, index) => {
           return (
-            <Button key={index} onClick={() => onClick(tag)} active={selectedTag === tag}>
+            <Button
+              key={index}
+              onClick={() => onClick(tag)}
+              active={selectedTag === tag}
+            >
               <Label variant="small">{tag}</Label>
             </Button>
           );
@@ -50,6 +58,12 @@ const WappedTagButton = (props: TagButtonProps) => {
 export function TagButton(props: TagButtonProps) {
   const { variant } = props;
   return (
-    <>{variant === variantType.wrapped ? <WappedTagButton {...props} /> : <NomalTagButton {...props} />}</>
+    <>
+      {variant === variantType.wrapped ? (
+        <WappedTagButton {...props} />
+      ) : (
+        <NomalTagButton {...props} />
+      )}
+    </>
   );
 }

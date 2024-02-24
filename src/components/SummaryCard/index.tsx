@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { Label } from '@/components/Label';
-import SampleImage from '@/components/assets/park.jpg';
-import { NoImage } from './NoImage';
-import { Card } from '@mui/material';
+import React, { useState } from "react";
+import Image from "next/image";
+import { Label } from "@/components/Label";
+import SampleImage from "@/components/assets/park.jpg";
+import { NoImage } from "./NoImage";
+import { Card } from "@mui/material";
 
 export type SummaryCardProp = {
   title: string;
@@ -58,10 +58,9 @@ export function SummaryCard(props: SummaryCardProps) {
         {loading ? (
           <div className="h-6 w-9/12 animate-pulse rounded bg-zinc-200"></div>
         ) : (
-          <Label variant="small">{formattedDate + '更新'}</Label>
+          <Label variant="small">{formattedDate + "更新"}</Label>
         )}
       </a>
     </Card>
   );
 }
-

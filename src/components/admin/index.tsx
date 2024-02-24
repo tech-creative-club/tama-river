@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SummaryCardProp, SummaryCard } from '@/components/SummaryCard';
 import { TagButton } from '@/components/TagButton';
+import { Notification } from '@/components/Notification';
 
 
 type DeviceType = 'mobile' | 'desktop';
@@ -29,6 +30,7 @@ function RenderComponent(props: RenderComponentProps) {
   return (
     <>
       <div className="w-full max-w-7xl p-5 pb-0">
+        <Notification title="使い方ヘルプ" text="現在提供中の記事一覧が表示されます。" notificationType="info" />
         <TagButton tags={tags} selectedTag={selectedTag} onClick={(str) => setTag(str)} variant="normal" />
       </div>
       <div className="hidden h-fit w-full max-w-7xl grid-cols-4 gap-4 md:grid">

@@ -13,7 +13,7 @@ export default function Tab({
   Icon?: React.ElementType;
 }) {
   const pathname = usePathname();
-  const highlight = { margin: "0px 10px", borderBottom: "3px solid #6f13e8" };
+  const highlight = { margin: "0px 10px", borderBottom: "3px solid #0362fc" };
   const normal = { margin: "0px 10px" };
   const boxStyle = href === pathname ? highlight : normal;
 

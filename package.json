@@ -21,7 +21,8 @@
     "next": "14.1.0",
     "next-auth": "^5.0.0-beta.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-variants": "^0.1.20"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.8.6",

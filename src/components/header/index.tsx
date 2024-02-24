@@ -4,6 +4,8 @@ import Tab from "./Tab";
 import Top from "./Top";
 import FullDivider from "@/components/misc/FullDivider";
 import DescriptionIcon from "@mui/icons-material/Description";
+import AddCommentIcon from "@mui/icons-material/AddComment";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useSession, signIn, signOut } from "next-auth/react";
 import StyledButton from "./StyledButton";
 import StyledBox from "./StyledBox";
@@ -14,9 +16,11 @@ function HeaderSection({ children }: { children: React.ReactNode }) {
 
 function AdminTabs() {
   return (
-    <>
-      <Tab title="Overview" href="/" Icon={DescriptionIcon} />
-    </>
+    <div className="flex justify-normal">
+      <Tab title="提供記事一覧" href="/" Icon={DescriptionIcon} />
+      <Tab title="提供記事追加" href="/add" Icon={AddCommentIcon} />
+      <Tab title="提供記事削除" href="/delete" Icon={DeleteIcon} />
+    </div>
   );
 }
 

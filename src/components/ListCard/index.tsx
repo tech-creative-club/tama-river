@@ -31,7 +31,7 @@ export function ListCard(props: SummaryCardProps) {
   return (
     <Card className="relative w-full p-5 m-2">
       <div className="flex justify-between">
-        <div className="flex">
+        <div className="flex flex-col">
           {loading ? (
             <div className="h-6 w-full animate-pulse rounded bg-zinc-200"></div>
           ) : (

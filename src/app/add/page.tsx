@@ -1,3 +1,4 @@
+"use client";
 import { Notification } from "@/components/Notification";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";

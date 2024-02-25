@@ -47,6 +47,7 @@ function LogoutButton() {
           signOut();
         }}
         className="bg-red-500"
+        isRed
       />
     </StyledBox>
   );

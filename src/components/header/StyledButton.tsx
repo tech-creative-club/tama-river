@@ -5,10 +5,12 @@ import { useRouter } from "next/navigation";
 export default function StyledButton({
   text,
   className,
+  isRed,
   onClick,
 }: {
   text: string;
   className?: string | undefined;
+  isRed?: boolean | undefined;
   onClick?: () => void | undefined;
 }) {
   const router = useRouter();
@@ -16,6 +18,7 @@ export default function StyledButton({
     // TODO: Actionを入れられるようにする
     <Button
       variant="contained"
+      color={isRed ? "error" : "primary"}
       className={className}
       onClick={() => {
         onClick?.();

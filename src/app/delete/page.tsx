@@ -4,6 +4,8 @@ import { SummaryCardProp, SummaryCard } from "@/components/SummaryCard";
 import { TagButton } from "@/components/TagButton";
 import { Notification } from "@/components/Notification";
 import { ListCard } from "@/components/ListCard";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 type DeviceType = "mobile" | "desktop";
 
@@ -27,6 +29,12 @@ const dictSort = (a: SummaryCardProp, b: SummaryCardProp) => {
 
 function RenderComponent(props: RenderComponentProps) {
   const { summaryCardJSON, Loading, tags, selectedTag, setTag } = props;
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  if (status === "unauthenticated") {
+    router.push("/");
+  }
+
   return (
     <>
       <div className="w-full max-w-7xl p-5 pb-0">

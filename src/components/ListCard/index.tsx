@@ -4,7 +4,6 @@ import { Label } from "@/components/Label";
 import { Card } from "@mui/material";
 import { Button } from "@mui/material";
 
-
 export type SummaryCardProp = {
   title: string;
   sport: string[];
@@ -46,7 +45,14 @@ export function ListCard(props: SummaryCardProps) {
           )}
         </div>
         <div className="flex">
-          <Button variant="contained" className="bg-red-500" color="error" onClick={()=>{console.log("deleted")}}>
+          <Button
+            variant="contained"
+            className="bg-red-500"
+            color="error"
+            onClick={() => {
+              console.log("deleted");
+            }}
+          >
             削除
           </Button>
         </div>

@@ -2,6 +2,7 @@
 
 import { Label } from "@/components/Label";
 import { Card } from "@mui/material";
+import { Button } from "@mui/material";
 
 export type SummaryCardProp = {
   title: string;
@@ -29,17 +30,26 @@ export function ListCard(props: SummaryCardProps) {
   const formattedDate = prop.date;
   return (
     <Card className="relative w-full p-5 m-2">
-        {loading ? (
-          <div className="h-6 w-full animate-pulse rounded bg-zinc-200"></div>
-        ) : (
-          <Label variant="large">{prop.title}</Label>
-        )}
+      <div className="flex justify-between">
+        <div className="flex">
+          {loading ? (
+            <div className="h-6 w-full animate-pulse rounded bg-zinc-200"></div>
+          ) : (
+            <Label variant="large">{prop.title}</Label>
+          )}
 
-        {loading ? (
-          <div className="h-6 w-9/12 animate-pulse rounded bg-zinc-200"></div>
-        ) : (
-          <Label variant="small">{formattedDate + "更新"}</Label>
-        )}
+          {loading ? (
+            <div className="h-6 w-9/12 animate-pulse rounded bg-zinc-200"></div>
+          ) : (
+            <Label variant="small">{formattedDate + "更新"}</Label>
+          )}
+        </div>
+        <div className="flex">
+          <Button variant="contained" className="bg-red-500">
+            削除
+          </Button>
+        </div>
+      </div>
     </Card>
   );
 }

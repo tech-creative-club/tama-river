@@ -1,4 +1,3 @@
-
 async function Handler() {
   // const content: SummaryCard[] = randomItems();
   const content: SummaryCardProp[] = await getArchiveByFQDN(

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useEffect, useState } from "react";
 import { SummaryCardProp, SummaryCard } from "@/components/SummaryCard";
 import { TagButton } from "@/components/TagButton";

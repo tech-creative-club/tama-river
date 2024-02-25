@@ -25,9 +25,25 @@ interface SummaryCardProps {
   desktop?: boolean;
 }
 
+async function deleteArticle(targetUrl: string) {
+  const res = await fetch("/api/events/delete", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ url : targetUrl }),
+  });
+  if (res.ok) {
+    console.log("Deleted");
+  } else {
+    console.log("Failed");
+  }
+}
+
 export function ListCard(props: SummaryCardProps) {
   const { prop, loading } = props;
   const formattedDate = prop.date;
+
   return (
     <Card className="relative w-full p-5 m-2">
       <div className="flex justify-between">
@@ -50,7 +66,7 @@ export function ListCard(props: SummaryCardProps) {
             className="bg-red-500"
             color="error"
             onClick={() => {
-              console.log("deleted");
+              deleteArticle(prop.url);
             }}
           >
             削除

@@ -57,6 +57,11 @@ async function getArchiveByFQDN(fqdn: string): Promise<SummaryCardProp[]> {
   const value = (await (
     await fetch(
       "https://tama-river-workers.suguru-toyohara.workers.dev/api/items",
+      {
+        method: "GET",
+        mode: "cors",
+        cache: "no-cache"
+      },
     )
   ).json()) as Items[];
   const item = value.find((e) => e.FQDN === fqdn);

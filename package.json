@@ -13,11 +13,16 @@
     "pages:deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.10",
+    "@mui/material": "^5.15.10",
     "nanoid": "^5.0.5",
     "next": "14.1.0",
     "next-auth": "^5.0.0-beta.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-variants": "^0.1.20"
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "^1.8.6",
